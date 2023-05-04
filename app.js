@@ -29,7 +29,7 @@ const initializeDbAndServer = async () => {
 
 initializeDbAndServer();
 
-// API 1
+// API 1 not submitting
 
 app.post("/register", async (request, response) => {
   let { username, name, password, gender, location } = request.body;
@@ -63,6 +63,8 @@ app.post("/register", async (request, response) => {
     response.send("User already exists");
   }
 });
+
+// API 1 successfully submitted
 
 // app.post("/register", async (request, response) => {
 //   let { username, name, password, gender, location } = request.body; //Destructuring the data from the API call

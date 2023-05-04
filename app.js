@@ -106,6 +106,25 @@ app.post("/register", async (request, response) => {
   }
 });
 
+// API 2
+app.post("/login", async (request, response) => {
+  const { username, password } = request.body;
+  const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`;
+  const dbUser = await db.get(selectUserQuery);
+  if (dbUser === undefined) {
+    response.status(400);
+    response.send("Invalid user");
+  } else {
+    const isPasswordMatched = await bcrypt.compare(password, dbUser.password);
+    if (isPasswordMatched === true) {
+      response.send("Login success!");
+    } else {
+      response.status(400);
+      response.send("Invalid password");
+    }
+  }
+});
+
 // temp API
 app.get("/all/", async (request, response) => {
   const getAllQuery = `SELECT * FROM user;`;

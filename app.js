@@ -125,11 +125,3 @@ app.post("/login", async (request, response) => {
     }
   }
 });
-
-// temp API
-app.get("/all/", async (request, response) => {
-  const getAllQuery = `SELECT * FROM user;`;
-  const dbItems = await database.all(getAllQuery);
-  response.send(dbItems);
-});
-module.exports = app;
